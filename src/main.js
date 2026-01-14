@@ -71,19 +71,22 @@ const observer = new IntersectionObserver((entries) => {
 // TERMINAL TYPING ANIMATION
 // ==========================================
 const terminalContent = [
-  "# Initializing QuickFlow ecosystem...",
-  "> Deploying Keycloak IAM container...",
-  "Status: Secure Tunnel Established (OIDC)",
+  "# Initializing Refactor: Better UX v1.1...",
+  "> Optimizing multimodal fusion layers...",
+  "Status: Computer Vision modules stable.",
   "",
-  "System Orchestration:",
-  "- Docker: Synchronizing Microservices",
-  "- OAuth2: Integrating Google IdP",
-  "- Ollama: Mounting Llama-3.2 volume",
+  "> Migrating to IAM Security Perimeter...",
+  "> [AUTH] Configuring Keycloak adapter...",
+  "> [OIDC] Establishing Secure JWT handshake...",
+  "Result: Identity brokering [##########] 100%",
   "",
-  "System Health: [##########] 100%",
-  "Location: /dev/quickflow/security-stack",
+  "Current Tasks:",
+  "- Dockerizing the Keycloak-SAML relay",
+  "- Testing Google OAuth2 social redundancy",
   "",
-  "yacin@whitecape:~/internship/better-ux$ _"
+  "System Build: In-Progress (Keycloak refactor)",
+  "",
+  "yacin@whitecape:~/better-ux-refactor$ _"
 ];
 
 const typedContentElement = document.getElementById('typedContent');
