@@ -71,19 +71,20 @@ const observer = new IntersectionObserver((entries) => {
 // TERMINAL TYPING ANIMATION
 // ==========================================
 const terminalContent = [
-  "# Featured Project: AI Nexus",
-  "> A decentralized intelligence layer for edge devices.",
+  "# Loading UX Insight Platform...",
+  "> Analyzing DOM hierarchy for 'app_v2.5'...",
+  "Status: Pattern Recognition Active",
+  "Nodes scanned: 1,248",
+  "Detected: UX Bottleneck (Cart Flow)",
   "",
-  "Status: Deploying...",
-  "Runtime: stable",
-  "Uptime: 99.98%",
+  "Generating Recommendation...",
+  "- Reduce friction in 'payment-modal'",
+  "- Optimize 'cta-button' contrast ratio",
   "",
-  "Key Features:",
-  "- Real-time pattern recognition",
-  "- Low-latency data sync",
-  "- End-to-end encrypted tunnels",
+  "Backend: Python / FastAPI",
+  "Analysis Engine: running (98% confidence)",
   "",
-  "yacin@portfolio:~/featured-project$ _"
+  "yacin@portfolio:~/ux-insight$ _"
 ];
 
 const typedContentElement = document.getElementById('typedContent');
