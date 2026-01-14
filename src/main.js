@@ -71,17 +71,17 @@ const observer = new IntersectionObserver((entries) => {
 // TERMINAL TYPING ANIMATION
 // ==========================================
 const terminalContent = [
-  "# Exploring Innovative Architectures...",
-  "> Searching for original solutions in AI...",
-  "Status: Idea validated (v1.0-prod)",
+  "# Initializing QuickFlow ecosystem...",
+  "> Deploying Keycloak IAM container...",
+  "Status: Secure Tunnel Established (OIDC)",
   "",
-  "Engineering Tasks:",
-  "- C++/CUDA: Parallelizing neural compute",
-  "- Spring AI: Architecting enterprise flow",
-  "- Manim: Generating behavioral insights",
+  "System Orchestration:",
+  "- Docker: Synchronizing Microservices",
+  "- OAuth2: Integrating Google IdP",
+  "- Ollama: Mounting Llama-3.2 volume",
   "",
   "System Health: [##########] 100%",
-  "Mission: Ready for Development & Shipping",
+  "Location: /dev/quickflow/security-stack",
   "",
   "yacin@whitecape:~/internship/better-ux$ _"
 ];
