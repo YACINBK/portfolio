@@ -116,18 +116,19 @@ body {
    ========================================== */
 .bento-container {
   max-width: 1400px;
-  margin: 0 auto;
-  padding: var(--space-lg);
-  min-height: 100vh;
+  width: 100%;
+  padding: 0;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: auto;
+  grid-auto-rows: minmax(180px, auto);
   gap: var(--space-md);
+  margin-top: 100px;
   grid-template-areas:
     "hero hero connect connect"
     "featured featured featured featured"
-    "bio bio projects projects"
-    "bio bio projects projects"
+    "bio experience experience experience"
+    "education education certifications certifications"
+    "skills skills projects projects"
     "skills skills projects projects";
 }
 
@@ -223,6 +224,18 @@ body {
 
 .tile-bio {
   grid-area: bio;
+}
+
+.tile-experience {
+  grid-area: experience;
+}
+
+.tile-education {
+  grid-area: education;
+}
+
+.tile-certifications {
+  grid-area: certifications;
 }
 
 .tile-projects {
@@ -379,26 +392,89 @@ body {
   margin-bottom: var(--space-lg);
 }
 
-.experience-list {
+.highlight-rank {
+  display: inline-block;
+  background: var(--accent-primary);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 99px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  margin-top: 0.5rem;
+  box-shadow: 0 0 15px var(--glow);
+}
+
+/* ==========================================
+   EXPERIENCE & EDUCATION TILE
+   ========================================== */
+.exp-item,
+.edu-item {
+  margin-bottom: var(--space-md);
+}
+
+.exp-role,
+.edu-date {
+  font-size: 0.875rem;
+  color: var(--accent-primary);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.exp-skills {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.exp-skills span {
+  font-size: 0.7rem;
+  padding: 0.2rem 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  border-radius: 4px;
+}
+
+.edu-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: var(--space-md);
 }
 
-.experience-item {
+/* ==========================================
+   CERTIFICATIONS TILE
+   ========================================== */
+.cert-list {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: var(--space-sm);
 }
 
-.experience-item strong {
+.cert-item {
+  padding: var(--space-sm);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  transition: all var(--transition-base);
+}
+
+.cert-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--accent-primary);
+  transform: translateX(5px);
+}
+
+.cert-title {
+  display: block;
   color: var(--text-primary);
   font-weight: 600;
+  font-size: 0.9rem;
 }
 
-.text-muted {
+.cert-issuer {
+  font-size: 0.75rem;
   color: var(--text-secondary);
-  font-size: 0.875rem;
 }
 
 /* ==========================================
@@ -674,10 +750,16 @@ body {
       "hero hero"
       "connect connect"
       "featured featured"
+      "experience experience"
       "bio bio"
-      "projects projects"
-      "projects projects"
-      "skills skills";
+      "education education"
+      "certifications certifications"
+      "skills skills"
+      "projects projects";
+  }
+
+  .edu-grid {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -698,9 +780,12 @@ body {
       "hero"
       "connect"
       "featured"
+      "experience"
       "bio"
-      "projects"
-      "skills";
+      "education"
+      "certifications"
+      "skills"
+      "projects";
   }
 
   .tile {

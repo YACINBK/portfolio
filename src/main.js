@@ -72,19 +72,18 @@ const observer = new IntersectionObserver((entries) => {
 // ==========================================
 const terminalContent = [
   "# Initializing Better UX v1.0...",
-  "> Refactoring UX-Insight core modules...",
-  "Status: Optimizing Heuristic Engine",
-  "Memory overhead reduced: 42%",
-  "Complexity reduction: O(n²) -> O(n log n)",
+  "> Loading modules from Whitecape Internship...",
+  "Status: Refactor complete (v1.0-stable)",
+  "",
+  "Tasks Executed:",
+  "- Memory Optimization: 42% reduction",
+  "- Heuristic Engine: vectorized O(n) scan",
+  "- State Sync: Redux -> Lightweight Context",
   "",
   "System Health: [##########] 100%",
-  "Active Analysis: Semantic UI Mapping",
-  "Refactor Result: Consistent State Management",
+  "Location: /mnt/whitecape/projects/better-ux",
   "",
-  "Build: Stable (Production v1.0)",
-  "Environment: Python / Neural-Engine",
-  "",
-  "yacin@portfolio:~/better-ux$ _"
+  "yacin@whitecape:~/internship/better-ux$ _"
 ];
 
 const typedContentElement = document.getElementById('typedContent');
