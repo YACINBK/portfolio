@@ -61,7 +61,7 @@
         <div class="terminal-body" id="terminalOutput">
           <div class="terminal-line">
             <span class="prompt">yacin@whitecape:~$</span>
-            <span class="command">./deploy_v1.0.sh</span>
+            <span class="command">./explain_refactor.sh</span>
           </div>
           <div class="terminal-content" id="typedContent"></div>
           <div class="terminal-cursor"></div>
@@ -94,15 +94,10 @@
     <section class="tile tile-bio" id="bio">
       <div class="tile-content">
         <span class="tile-label">About</span>
-        <h3>Bridging AI & Web Systems</h3>
-        <p>Undergraduate engineer specializing in AI/ML and Full-Stack development. Currently focused on optimizing UX
-          through heuristic engines and building intelligent data pipelines.</p>
-        <div class="experience-list">
-          <div class="experience-item">
-            <strong>National Competitive Exam</strong>
-            <span class="highlight-rank">Rank: 509 (MP)</span>
-          </div>
-        </div>
+        <h3>Engineering the future through AI</h3>
+        <p>I am an Applied Computer Science Engineering Student with a deep-seated passion for Artificial Intelligence.
+          I love exploring the intersection of neural networks and web ecosystems to build smarter, more efficient user
+          experiences.</p>
       </div>
     </section>
 
@@ -110,14 +105,18 @@
     <section class="tile tile-experience" id="experience">
       <div class="tile-content">
         <span class="tile-label">Work Experience</span>
-        <div class="exp-item">
-          <h4>Whitecape Technologies</h4>
-          <span class="exp-role">Internship Trainee (Summer)</span>
-          <p>Outcome: <b>Better UX v1.0</b>. Built intelligent data pipelines and optimized heuristic engines for UI
-            analysis.</p>
-          <div class="exp-skills">
-            <span>LLMOps</span> <span>RAG</span> <span>AI Agents</span> <span>FastAPI</span> <span>Triton</span>
-            <span>NLP</span> <span>OCR</span> <span>Angular</span> <span>Spring Boot</span>
+        <div class="exp-grid">
+          <div class="exp-item">
+            <div class="exp-header">
+              <h4>Whitecape Technologies</h4>
+              <span class="exp-role">Internship Trainee (Summer)</span>
+            </div>
+            <p>Developed <b>Better UX v1.0</b>. Built intelligent data pipelines and optimized heuristic engines for UI
+              analysis using LLMOps and RAG.</p>
+            <div class="exp-skills">
+              <span>LLMOps</span> <span>RAG</span> <span>FastAPI</span> <span>Triton</span> <span>NLP</span>
+              <span>Angular</span>
+            </div>
           </div>
         </div>
       </div>
@@ -126,7 +125,7 @@
     <!-- Education Tile -->
     <section class="tile tile-education" id="education">
       <div class="tile-content">
-        <span class="tile-label">Education</span>
+        <span class="tile-label">Education & Honors</span>
         <div class="edu-grid">
           <div class="edu-item">
             <h4>ENISo</h4>
@@ -137,31 +136,46 @@
             <h4>IPEIM Monastir</h4>
             <p>Preparatory Studies (Math-Physics)</p>
             <span class="edu-date">2022 - 2024</span>
+            <div class="honors-badge">
+              <span class="link-icon">★</span>
+              <span>National Rank: 509</span>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Certifications & Honors Tile -->
+    <!-- Certifications Tile -->
     <section class="tile tile-certifications" id="certifications">
       <div class="tile-content">
         <span class="tile-label">Verified Expertise</span>
-        <div class="cert-list">
-          <a href="https://www.credly.com/org/nvidia" target="_blank" class="cert-item">
-            <span class="cert-title">NVIDIA: Building RAG Agents</span>
-            <span class="cert-issuer">NVIDIA Deep Learning Institute</span>
-          </a>
-          <a href="https://www.credly.com/org/google" target="_blank" class="cert-item">
-            <span class="cert-title">Intro to Generative AI</span>
-            <span class="cert-issuer">Google Cloud</span>
-          </a>
-          <a href="https://www.coursera.org/specializations/deep-learning" target="_blank" class="cert-item">
-            <span class="cert-title">Neural Networks & Deep Learning</span>
-            <span class="cert-issuer">DeepLearning.AI</span>
-          </a>
-          <a href="https://www.credly.com/org/nvidia" target="_blank" class="cert-item">
-            <span class="cert-title">+8 more NVIDIA certifications</span>
-          </a>
+        <div class="cert-categories">
+          <div class="cert-category" id="cat-nvidia">
+            <span class="cat-title">NVIDIA (10+)</span>
+            <div class="cert-dropdown">
+              <a href="#" class="cert-link">Building RAG Agents</a>
+              <a href="#" class="cert-link">Predictive Maintenance AI</a>
+              <a href="#" class="cert-link">Real-Time Video AI</a>
+              <a href="#" class="cert-link">Transformer-Based NLP</a>
+              <a href="#" class="cert-link">Generative AI (Diffusion)</a>
+              <a href="#" class="cert-link">Fundamentals of Deep Learning</a>
+            </div>
+          </div>
+          <div class="cert-category" id="cat-dl">
+            <span class="cat-title">DeepLearning.AI</span>
+            <div class="cert-dropdown">
+              <a href="#" class="cert-link">Neural Networks & Deep Learning</a>
+              <a href="#" class="cert-link">Supervised ML: Regression</a>
+            </div>
+          </div>
+          <div class="cert-category" id="cat-google">
+            <span class="cat-title">Google & More</span>
+            <div class="cert-dropdown">
+              <a href="#" class="cert-link">Intro to Generative AI (Google)</a>
+              <a href="#" class="cert-link">Data Cleaning (365 Data Science)</a>
+              <a href="#" class="cert-link">Python (Sololearn)</a>
+            </div>
+          </div>
         </div>
       </div>
     </section>

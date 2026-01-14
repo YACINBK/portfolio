@@ -71,17 +71,22 @@ const observer = new IntersectionObserver((entries) => {
 // TERMINAL TYPING ANIMATION
 // ==========================================
 const terminalContent = [
-  "# Initializing Better UX v1.0...",
-  "> Loading modules from Whitecape Internship...",
-  "Status: Refactor complete (v1.0-stable)",
+  "# Running Optimization Plan...",
+  "> Step 1: Scanning for 'Slow' code in Better UX...",
+  "Status: 3 segments found.",
   "",
-  "Tasks Executed:",
-  "- Memory Optimization: 42% reduction",
-  "- Heuristic Engine: vectorized O(n) scan",
-  "- State Sync: Redux -> Lightweight Context",
+  "> Step 2: Applying mathematical refactor...",
+  "Result: Processing speed increased by 42%.",
   "",
-  "System Health: [##########] 100%",
-  "Location: /mnt/whitecape/projects/better-ux",
+  "> Step 3: Organizing data flow...",
+  "Benefit: Instant responses for the end user.",
+  "",
+  "Summary of Internship Achievement:",
+  "- Made the application 'lighter' and faster.",
+  "- Simplified how information moves through the app.",
+  "",
+  "Build: Stable & Ready for launch",
+  "Environment: Whitecape Infrastructure",
   "",
   "yacin@whitecape:~/internship/better-ux$ _"
 ];
