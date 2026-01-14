@@ -71,22 +71,17 @@ const observer = new IntersectionObserver((entries) => {
 // TERMINAL TYPING ANIMATION
 // ==========================================
 const terminalContent = [
-  "# Running Optimization Plan...",
-  "> Step 1: Scanning for 'Slow' code in Better UX...",
-  "Status: 3 segments found.",
+  "# Exploring Innovative Architectures...",
+  "> Searching for original solutions in AI...",
+  "Status: Idea validated (v1.0-prod)",
   "",
-  "> Step 2: Applying mathematical refactor...",
-  "Result: Processing speed increased by 42%.",
+  "Engineering Tasks:",
+  "- C++/CUDA: Parallelizing neural compute",
+  "- Spring AI: Architecting enterprise flow",
+  "- Manim: Generating behavioral insights",
   "",
-  "> Step 3: Organizing data flow...",
-  "Benefit: Instant responses for the end user.",
-  "",
-  "Summary of Internship Achievement:",
-  "- Made the application 'lighter' and faster.",
-  "- Simplified how information moves through the app.",
-  "",
-  "Build: Stable & Ready for launch",
-  "Environment: Whitecape Infrastructure",
+  "System Health: [##########] 100%",
+  "Mission: Ready for Development & Shipping",
   "",
   "yacin@whitecape:~/internship/better-ux$ _"
 ];
