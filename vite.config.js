@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite'
 
 export default defineConfig({
-    base: '/Yacin-Ben-Kacem.github.io/', // Project Page deployment (username != repo name)
+    base: '/portfolio/', // Clean URL: https://YACINBK.github.io/portfolio/
 })
