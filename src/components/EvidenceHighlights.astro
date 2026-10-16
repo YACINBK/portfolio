@@ -1,0 +1,52 @@
+---
+interface Props {
+    items: { value: string; label: string; detail: string }[];
+}
+
+const { items } = Astro.props;
+---
+
+<dl class="focus-card-grid evidence-highlights" aria-label="RAG evaluation and engineering results">
+    {items.map((item) => (
+        <div class="focus-card evidence-highlight">
+            <dt>{item.label}</dt>
+            <dd>
+                <strong>{item.value}</strong>
+                <span>{item.detail}</span>
+            </dd>
+        </div>
+    ))}
+</dl>
+
+<style>
+    .evidence-highlights,
+    .evidence-highlight dd {
+        margin: 0;
+    }
+
+    .evidence-highlight {
+        align-content: start;
+    }
+
+    .evidence-highlight dt {
+        color: var(--text-soft);
+        font-size: var(--text-sm);
+        font-weight: 500;
+    }
+
+    .evidence-highlight dd {
+        display: grid;
+        gap: 0.65rem;
+    }
+
+    .evidence-highlight strong {
+        color: var(--cyan-bright);
+        font-size: var(--text-2xl);
+    }
+
+    .evidence-highlight span {
+        color: var(--text-soft);
+        font-size: var(--text-base);
+        line-height: 1.7;
+    }
+</style>

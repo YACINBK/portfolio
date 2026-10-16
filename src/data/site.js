@@ -1,10 +1,10 @@
 export const site = {
     name: 'Yacin Ben Kacem',
     shortName: 'YBK',
-    role: 'Software Engineering Student — Backend Orchestration & Agentic AI',
+    role: 'Final-Year Software Engineering Student — Secure Agentic AI & RAG',
     title: 'Yacin Ben Kacem | Backend & Agentic Systems Architecture',
     description:
-        'Software engineering student building agentic AI systems, unattended automation pipelines, and the secure backends they run on.',
+        'Final-year ENISO software engineering student building secure agentic AI and RAG systems, with retrieval evaluation, access-control audits, and recoverable automation.',
     location: 'Sousse, Tunisia',
     availability:
         'Available for backend systems engineering, AI architecture, and automation-heavy technical projects.',
@@ -20,8 +20,8 @@ export const site = {
         href: '/Yacin_Ben_Kacem_CV.pdf',
         filename: 'Yacin_Ben_Kacem_CV.pdf',
         label: 'Download CV',
-        updated: 'August 2026',
-        pages: 'PDF · 1 page',
+        updated: 'October 2026',
+        pages: 'PDF · 2 pages',
     },
     intro:
         'I build the unglamorous half of AI systems: the part that has to be right.',
@@ -50,19 +50,19 @@ export const routes = [
 
 export const focusAreas = [
     {
-        title: 'Agentic Systems',
+        title: 'Measured Retrieval',
         description:
-            'Multi-step AI workflows with state checks, tool routing, retries, and explicit failure states.',
+            'Labeled evaluation sets, near-miss questions, and threshold sweeps to measure what retrieval accepts, misses, and can safely prune.',
     },
     {
-        title: 'Secure Backend',
+        title: 'Access-Aware AI',
         description:
-            'Gateways, identity, JWT/OIDC validation, access boundaries, and clean API contracts.',
+            'Role and admin scope enforced inside retrieval queries, backed by Keycloak identity and audits of who can retrieve what.',
     },
     {
-        title: 'Unattended Automation',
+        title: 'Recoverable Agents',
         description:
-            'Long-running agents that inspect state before acting, skip finished work, retry unstable steps, and resume after interruption.',
+            'Tool-calling agents and pipelines that inspect state, preserve completed work, and recover through retries, checkpoints, and contract tests.',
     },
 ];
 
@@ -80,42 +80,45 @@ export const workEntries = [
         range: 'Summer 2025 · Summer 2026',
         location: 'Sousse, Tunisia',
         summary:
-            'Two summer engagements, each scoped to design and ship a production-intent system end to end — from retrieval and agent orchestration through identity, async job lifecycles, and containerized delivery.',
+            'Two summer engagements at White Cape Technologies: a role-aware knowledge assistant evaluated for retrieval quality and access control, and a distributed platform for automated UX analysis.',
         groups: [
             {
                 label: 'Agentic RAG Knowledge Assistant',
                 range: 'Jun – Aug 2026',
                 items: [
-                    'Architected a 9-node LangGraph state machine — classify, retrieve, rerank, relevance gate, generate, faithfulness check — returning grounded, cited, role-aware answers streamed over SSE.',
-                    'Built a fully local inference stack: LiteLLM routing to Ollama with Qdrant vector search, BGE-M3 embeddings, and a bge-reranker-v2-m3 reranker via Hugging Face TEI, so no document content leaves the network.',
-                    'Enforced a two-dimension privilege filter (role and admin scope) inside the retrieval query rather than the UI, behind Keycloak OIDC session auth with CSRF protection.',
-                    'Gated every response on a faithfulness check that falls back honestly instead of hallucinating; delivered with Celery ingestion, Qdrant semantic caching, and 218 contract-driven tests.',
+                    'Built a 9-node LangGraph assistant for company knowledge and codebases, with role- and admin-scoped retrieval: zero authorization violations across 280 audited retrievals.',
+                    'Built a labeled evaluation suite with held-out splits and 23 near-miss cases. Selecting a relevance cutoff of 0.5 reduced wrongly answered unanswerable questions from 12/29 to 6/29 in that evaluation.',
+                    'Reduced retrieved context per query by 46% at a pruning threshold of 0.025, preserving direct-evidence recall of 1.000 across a six-threshold sweep.',
+                    'Exposed a lexical-overlap verification blind spot: a fabricated claim scored 1.000, matching a grounded control. Preserved the probe as a regression test for evaluating an entailment-based replacement.',
+                    'Hardened document ingestion with three-attempt exponential-backoff retry at the LLM transport boundary; excluded the Celery soft-timeout signal so timed-out jobs can record their failure.',
+                    'Kept document inference local with LiteLLM, Ollama, Qdrant, BGE-M3, and TEI. Used a planner–generator–evaluator build loop across 45 contract-driven modules and 415 tests, with mutation probes to check that fixes catch reintroduced defects.',
                 ],
             },
             {
                 label: 'UX Insight Platform',
                 range: 'Jun – Aug 2025',
                 items: [
-                    'Delivered an AI-driven distributed UX analysis platform turning screenshots, OCR, interaction telemetry, and visual heuristics into structured findings across Angular, a Spring Boot gateway, and FastAPI services.',
+                    'Built a UX audit platform combining UI element detection, OCR, and interaction telemetry with ChromaDB-backed retrieval of UX heuristics and prior findings to produce structured reports.',
                     'Moved heavy AI work off the request path into an async job lifecycle with queueing, polling, and recovery; secured the gateway with Keycloak OAuth2/OIDC and JWT validation.',
-                    'Isolated LLM-inference, OCR, and image-processing workloads into fallback-aware FastAPI microservices on PostgreSQL, Redis caching, and Docker Compose.',
+                    'Isolated LLM, OCR, and image workloads into FastAPI services; added provider routing across OpenAI, Mistral, DeepSeek, OpenRouter, and local Ollama, backed by PostgreSQL, Redis, and Docker Compose.',
                 ],
             },
         ],
     },
     {
-        type: 'Independent systems',
+        type: 'Personal & team projects',
         role: 'Backend, Agentic AI, Automation, and Data Projects',
-        organization: 'Personal builds',
+        organization: 'Independent work & collaboration',
         range: '2024 - Present',
         location: 'Sousse, Tunisia',
         summary:
-            'Independent systems built around authentication, failure states, queues, caching, recovery logic, and reproducible outputs.',
+            'Personal tooling and collaborative systems built around authentication, contract tests, recovery logic, and reproducible outputs.',
         groups: [
             {
                 label: 'Systems',
                 items: [
-                    'QuickFlow: secure assistant for meeting summaries, structured minutes, and email generation.',
+                    'MCP multi-agent build pipeline: project tooling exposed as callable tools in Claude Code, with planner, generator, and evaluator roles checking code against contracts; in daily use.',
+                    'QuickFlow: Spring AI productivity workflows, Keycloak Google/Microsoft identity brokering and TOTP/MFA, plus Angular draft preservation across session refreshes.',
                     'Agentic video production: browser automation, rendering, captions, metadata, scheduling, and archival.',
                 ],
             },
@@ -123,7 +126,7 @@ export const workEntries = [
                 label: 'Data / Media',
                 items: [
                     'Machine learning/data projects: Play Store install prediction and soil nutrient modeling with reproducible preprocessing.',
-                    'Image vectorization workflow: SAM, OpenCV/Pillow, Oklab, VTracer, and VRAM-aware execution.',
+                    'Image vectorization: subprocess-isolated stages, explicit VRAM flushing, and per-image batch checkpoints for repeatable generation-to-SVG runs on an 8GB GPU.',
                 ],
             },
         ],
@@ -134,7 +137,7 @@ export const projects = [
     {
         slug: 'knowledge-assistant',
         title: 'Agentic RAG Knowledge Assistant',
-        summary: 'Agentic RAG system that answers internal questions with grounded, cited, role-aware responses.',
+        summary: 'Local knowledge assistant with access-scoped retrieval, measured relevance thresholds, and reproducible verification probes.',
         type: 'Agentic RAG system',
         status: 'Active flagship',
         timeline: 'Jun – Aug 2026',
@@ -144,32 +147,41 @@ export const projects = [
         problem:
             'Internal knowledge is scattered across company documents. Employees need grounded, trustworthy answers with sources, not an ungrounded chatbot that hallucinates.',
         result:
-            'Every answer is retrieved from indexed company documents, scoped to the user role, cited to its source, and passed through a faithfulness check before it streams back. No external search, no ungrounded output.',
+            'Zero authorization violations across 280 audited retrievals; 46% less retrieved context with direct-evidence recall held at 1.000 in the pruning evaluation.',
+        evidence: [
+            { value: '0 / 280', label: 'Authorization violations', detail: 'Across audited role- and admin-scoped retrievals.' },
+            { value: '46% less', label: 'Retrieved context', detail: 'Direct-evidence recall held at 1.000 in the threshold sweep.' },
+            { value: '415 tests', label: '45 contract-driven modules', detail: 'Mutation probes check that fixes detect reintroduced defects.' },
+        ],
+        evaluation: [
+            { label: 'Tune against near misses', detail: 'A labeled suite with held-out splits and reproducible offline scoring used 23 purpose-built near-miss cases to reject an over-permissive cutoff. At 0.5, balanced accuracy peaked and wrongly answered unanswerable questions fell from 12/29 to 6/29 in the evaluation.' },
+            { label: 'Prune without losing direct evidence', detail: 'Swept six candidate pruning thresholds. At 0.025, retrieved context per query fell by 46% while direct-evidence recall remained 1.000 on the evaluation set.' },
+            { label: 'Test the verifier itself', detail: 'A fabricated claim and a grounded control both scored 1.000 under lexical overlap. The resulting regression probe documents the blind spot and provides a repeatable test for an entailment-based replacement; passing the current gate does not prove factual support.' },
+        ],
         architecture: [
-            'Generation is buffered, not streamed: the generator holds its output in memory and SSE only opens after the faithfulness check passes, so no unverified token ever reaches the user.',
+            'The 9-node LangGraph routes questions through classification, rewriting, retrieval, reranking, relevance gating, generation, and a lexical-overlap check before releasing generated answers over SSE.',
             'LiteLLM routes every model call to a fully local Ollama runtime, so no document text leaves the network.',
             'BGE-M3 embeddings with a bge-reranker-v2-m3 reranker served through Hugging Face TEI.',
             'Qdrant holds both the vectors and a role-scoped semantic cache at a 0.92 cosine threshold, so a cached answer cannot cross a privilege boundary; PostgreSQL stores durable state and Redis backs Celery.',
             'The relevance retry re-enters at search rather than the rewriter — a broadened query re-runs retrieval instead of restarting the graph.',
-            'The reranker is a cross-encoder, so it cannot run on Ollama; it is served separately through Hugging Face TEI on CPU.',
             'A three-way classifier separates chitchat from single-shot retrieval and multi-part questions; on the complex route one rewriter call also decomposes the question into at most three sub-queries, searched concurrently with asyncio.gather and reranked together.',
-            'Celery ingestion pipeline (extract, chunk, enrich, index) with an HTMX + Jinja2 UI streamed over SSE.',
+            'Celery ingestion uses three-attempt exponential-backoff retry at the LLM transport boundary. Its retry allowlist excludes soft timeouts so a cancelled job can still record failure.',
         ],
         paths: [
             { path: 'Cache hit', when: 'Semantically equivalent query already answered for this role', cost: '~50 ms' },
             { path: 'DIRECT', when: 'Chitchat, greeting, or out-of-scope question — no retrieval, no generation call', cost: '< 50 ms' },
-            { path: 'Full RAG', when: 'Domain question, chunks found, answer verified faithful', cost: '2.3 – 4.3 s' },
+            { path: 'Full RAG', when: 'Domain question, chunks found, answer passes the lexical-overlap check', cost: '2.3 – 4.3 s' },
             { path: 'Relevance retry', when: 'First search returns low-confidence chunks, broadened query re-runs retrieval', cost: '+1 – 2 s' },
             { path: 'Honest fallback', when: 'Both search attempts fail the relevance threshold', cost: '~1.5 s' },
-            { path: 'Escalation', when: 'Generator produced ungrounded claims — answer discarded, event logged', cost: 'same as full RAG' },
+            { path: 'Escalation', when: 'Answer fails the lexical-overlap check — discarded and logged', cost: 'same as full RAG' },
         ],
         constraints: [
             'Keycloak OIDC session auth, CSRF-protected.',
             'Two-dimension privilege filter (role and admin-only) enforced inside the retrieval query, not just the UI.',
-            'Faithfulness gate with an honest fallback and escalation so no ungrounded answer reaches the user.',
-            'Contracts-driven development with 218 passing tests.',
+            'Relevance fallback and lexical-overlap gating with a documented verification blind spot; neither is a guarantee of factual correctness.',
+            '45 contract-driven modules and 415 tests, with mutation probes checking guard behavior.',
         ],
-        flow: ['Query', 'Classify', 'Retrieve + Rerank', 'Relevance gate', 'Generate', 'Faithfulness', 'Cited answer (SSE)'],
+        flow: ['Query', 'Classify', 'Retrieve + Rerank', 'Relevance gate', 'Generate', 'Overlap check', 'Answer (SSE)'],
         tech: ['FastAPI', 'LangGraph', 'LiteLLM', 'Ollama', 'Qdrant', 'BGE-M3', 'Reranker (TEI)', 'PostgreSQL', 'Redis', 'Celery', 'Keycloak', 'HTMX', 'SSE'],
         repository: 'https://github.com/YACINBK/Agentic_Rag_Assistant',
         repositoryLabel: 'Open repository',
@@ -177,7 +189,7 @@ export const projects = [
     {
         slug: 'ux-insight-platform',
         title: 'UX Insight Platform',
-        summary: 'Distributed system for automated web UX analysis.',
+        summary: 'Screenshot-to-report UX analysis combining UI detection, OCR, telemetry, and retrieval-backed findings.',
         type: 'Distributed AI platform',
         status: 'Delivered',
         timeline: 'Jun – Aug 2025',
@@ -191,8 +203,8 @@ export const projects = [
         architecture: [
             'Angular frontend for uploads, progress state, and results.',
             'Spring Boot gateway for persistence, file handling, orchestration, async jobs, and API contracts.',
-            'FastAPI LLM service with ChromaDB RAG, embeddings, prompt constraints, and fallback-aware provider logic.',
-            'FastAPI image-processing service for screen classification, UI detection, and OCR.',
+            'ChromaDB retrieves UX heuristics and prior findings before generation; the LLM layer routes across OpenAI, Mistral, DeepSeek, OpenRouter, and local Ollama.',
+            'Computer-vision UI element detection combines screenshot structure with OCR text and interaction telemetry for evidence-backed reports.',
             'PostgreSQL for durable state, Redis caching for repeated expensive calls, Docker Compose for local orchestration.',
         ],
         constraints: [
@@ -210,20 +222,20 @@ export const projects = [
         title: 'QuickFlow',
         summary: 'Secure assistant for meetings, structured minutes, and email generation.',
         type: 'Full-stack system',
-        status: 'Independent build',
+        status: 'Team build',
         timeline: '2025',
         kind: 'SoftwareSourceCode',
-        role: 'Independent full-stack system.',
-        stack: 'Spring Boot / Angular / Keycloak / OAuth2-OIDC / MongoDB / LLM workflows',
+        role: 'Team project: identity/security ownership, Spring AI integration, and Angular workflows.',
+        stack: 'Spring Boot / Spring AI / Angular / Keycloak / OIDC / TOTP-MFA',
         problem:
             'Meeting and email generation need authentication, saved context, and predictable workflow rules, not a loose prompt box.',
         result:
-            'Built a private productivity system where generated output is governed by backend rules, identity, and reusable workflows.',
+            'Preserved unsaved drafts through session refreshes and built a summary-to-email component reused across three features, with shared social login and MFA.',
         architecture: [
-            'Spring Boot backend for business workflows, persistence, and identity management.',
-            'Angular frontend for meeting, email, and contact flows.',
-            'Keycloak identity model with social login support and OAuth2/OIDC concepts.',
-            'Controlled generation with cached request fingerprints and reusable communication flows.',
+            'Spring AI integrated into Spring Boot for meeting summaries, structured minutes, and email drafts.',
+            'Keycloak OIDC with Google and Microsoft identity brokering, plus TOTP multi-factor authentication.',
+            'Angular authentication state decoupled from in-progress work so a session refresh preserves unsaved drafts.',
+            'Reusable summary-to-email conversion component shared across three team features.',
         ],
         constraints: [
             'Token-aware backend flows and environment-based secrets.',
@@ -231,7 +243,7 @@ export const projects = [
             'Workflow-specific prompt rules instead of a general free-form prompt box.',
         ],
         flow: ['Auth', 'Workflow Rules', 'LLM Generation', 'Saved Context', 'Email / Minutes'],
-        tech: ['Spring Boot', 'Angular', 'Keycloak', 'OAuth2/OIDC', 'MongoDB', 'LLM workflow orchestration'],
+        tech: ['Spring Boot', 'Spring AI', 'Angular', 'Keycloak', 'OIDC', 'JWT', 'TOTP/MFA'],
         repository: 'https://github.com/TaherBenAfia/quickflow',
         repositoryLabel: 'Open repository',
     },
@@ -334,13 +346,32 @@ export const automationEntries = [
         ],
     },
     {
+        slug: 'mcp-build-pipeline',
+        title: 'MCP Multi-Agent Build Pipeline',
+        type: 'Developer tooling',
+        summary: 'MCP project tools and a planner–generator–evaluator build loop, used daily to write and check code against contracts.',
+        subtitle: 'Project tools callable by agents, with separate planning, implementation, and evaluation roles.',
+        detail: 'Built MCP servers that expose personal project tooling inside Claude Code. Agents call functions against real project files; distinct planner, generator, and evaluator roles build and check code against contract tests. This is part of my daily development workflow.',
+        tech: ['MCP', 'Claude Code', 'Python', 'Multi-agent orchestration', 'Contract tests'],
+        flow: [
+            { title: 'Plan', detail: 'Planner defines the work against module contracts' },
+            { title: 'Build', detail: 'Generator invokes project tools through MCP' },
+            { title: 'Evaluate', detail: 'Evaluator checks the implementation against contract tests' },
+        ],
+        outcomes: [
+            'Makes existing project tooling directly callable by agents.',
+            'Separates planning, generation, and evaluation responsibilities.',
+            'Used in the RAG build across 45 contract-driven modules and 415 tests.',
+        ],
+    },
+    {
         slug: 'image-vectorization',
         title: 'Image Vectorization Workflow',
         type: 'Constraint-aware pipeline',
         summary: 'Generation-to-SVG pipeline that holds an 8GB VRAM budget with checkpointed batch recovery.',
         subtitle: 'Generation-to-SVG workflow under 8GB VRAM constraints.',
         detail:
-            'A constraint-aware creative workflow: image generation, SAM subject isolation, OpenCV/Pillow preprocessing, Oklab perceptual color quantization, VTracer SVG tracing, and batch VRAM management.',
+            'An apparel-design workflow combining generation, SAM isolation, OpenCV/Pillow preprocessing, Oklab color simplification, and VTracer SVG tracing. Each stage runs in its own subprocess with explicit VRAM flushing, reducing fragmentation on an 8GB GPU; batch checkpoints preserve completed images after interruption.',
         repository: 'https://github.com/YACINBK/image-vectorization',
         repositoryLabel: 'Open repository',
         tech: ['Python', 'Stable Diffusion', 'SAM', 'OpenCV', 'Pillow', 'Oklab', 'VTracer', 'CUDA / VRAM management'],
@@ -350,12 +381,12 @@ export const automationEntries = [
             { title: 'Preprocess', detail: 'Clean, resize, and normalize with OpenCV/Pillow' },
             { title: 'Quantize', detail: 'Reduce palette with Oklab before tracing' },
             { title: 'Trace', detail: 'Export scalable SVG with VTracer' },
-            { title: 'Recover', detail: 'Flush VRAM and checkpoint batch state' },
+            { title: 'Recover', detail: 'Flush VRAM between subprocesses and resume from the last completed image' },
         ],
         outcomes: [
             'Converts manual creative work into a repeatable workflow.',
             'Produces vector-ready assets within an 8GB VRAM budget.',
-            'Keeps every stage explicit so outputs are debuggable.',
+            'Isolates stages in subprocesses and resumes batches from the last completed image.',
         ],
     },
 
@@ -370,7 +401,7 @@ export const toolkit = [
     },
     {
         category: 'Agentic AI',
-        items: ['LangGraph', 'LangChain', 'LiteLLM', 'Local LLMs (Ollama)', 'RAG', 'Reranking (TEI)', 'MCP servers', 'Tool-calling agents', 'Faithfulness checks', 'Semantic caching', 'Prompt engineering'],
+        items: ['LangGraph', 'LangChain', 'LiteLLM', 'Local LLMs (Ollama)', 'RAG', 'Reranking (TEI)', 'MCP servers', 'Multi-agent orchestration', 'Tool-calling agents', 'Retrieval evaluation', 'Verification probes', 'Semantic caching', 'Context engineering'],
     },
     {
         category: 'Media Workflows',
@@ -390,7 +421,7 @@ export const toolkit = [
     },
     {
         category: 'Security & Delivery',
-        items: ['Docker', 'Git/GitHub/GitLab', 'Keycloak', 'OAuth2/OIDC', 'JWT', 'Linux CLI', 'Postman', 'Fallback-aware workflows'],
+        items: ['Docker', 'Git/GitHub/GitLab', 'Keycloak', 'OAuth2/OIDC', 'RBAC', 'JWT', 'Google/Microsoft identity brokering', 'TOTP/MFA', 'pytest', 'Contract tests', 'Mutation probes', 'Linux CLI'],
     },
 ];
 
@@ -476,6 +507,7 @@ export const education = [
         institution: 'Ecole Nationale d\'Ingenieurs de Sousse (ENISo)',
         title: 'Engineering Degree in Software Engineering',
         range: 'Sep 2024 - Present',
+        note: 'Final year',
     },
     {
         institution: 'Preparatory Institute for Engineering Studies of Monastir',
@@ -487,8 +519,8 @@ export const education = [
 
 export const languages = [
     { name: 'Arabic', level: 'Native' },
-    { name: 'English', level: 'C1 Advanced' },
-    { name: 'French', level: 'B2 Upper Intermediate' },
+    { name: 'English', level: 'Fluent' },
+    { name: 'French', level: 'Fluent' },
     { name: 'German', level: 'A1 Beginner' },
 ];
 

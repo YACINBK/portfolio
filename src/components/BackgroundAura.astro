@@ -119,4 +119,20 @@
         0% { transform: translateY(-100%); }
         100% { transform: translateY(100%); }
     }
+
+    @media (max-width: 900px) {
+        .bg-aura__mesh {
+            opacity: 0.35;
+            animation: none;
+        }
+
+        .bg-aura__scanline {
+            display: none;
+        }
+
+        .bg-aura__blob {
+            filter: blur(48px);
+            animation: none;
+        }
+    }
 </style>

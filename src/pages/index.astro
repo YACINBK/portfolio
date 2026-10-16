@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import EvidenceHighlights from '../components/EvidenceHighlights.astro';
 import { automationEntries, focusAreas, projects, site, systemProfile, workEntries } from '../data/site';
 import { absoluteUrl, withBase } from '../utils/paths';
 
@@ -51,7 +52,7 @@ const profileSchema = {
                 </p>
                 <h1 class="home-title">{site.name}</h1>
                 <p class="page-copy page-copy--lead">{site.intro}</p>
-                <p class="page-copy page-copy--impact"><strong>Agent graphs</strong> that pick their own next step. <strong>Retrieval</strong> scoped to who is asking. <strong>A generator</strong> that holds its answer in memory until a faithfulness check clears it. <strong>Backends that resume</strong> instead of restarting.</p>
+                <p class="page-copy page-copy--impact"><strong>Agent graphs</strong> that pick their own next step. <strong>Retrieval</strong> scoped to who is asking. <strong>Evaluation</strong> that tests retrieval quality and exposes verification blind spots. <strong>Backends that resume</strong> instead of restarting.</p>
 
                 <div class="inline-links">
                     <a class="button-primary" href={withBase('/projects')} data-astro-prefetch>View Projects</a>
@@ -119,13 +120,14 @@ const profileSchema = {
                     ))}
                 </div>
 
-                <p class="result-callout">{flagship.result}</p>
+                <EvidenceHighlights items={flagship.evidence} />
 
                 <div class="inline-links">
                     <a class="button-primary" href={flagship.repository} target="_blank" rel="noreferrer">
                         {site.currentFocusCta}
                     </a>
-                    <a href={withBase('/projects')} data-astro-prefetch>Read architecture</a>
+                    <a href={withBase('/projects#knowledge-assistant-evaluation')} data-astro-prefetch>Read evaluation findings</a>
+                    <a href={withBase('/lab#mcp-build-pipeline')} data-astro-prefetch>Explore the MCP build workflow</a>
                 </div>
             </article>
         </section>

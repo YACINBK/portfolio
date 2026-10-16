@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageIntro from '../components/PageIntro.astro';
 import RagPipelineDiagram from '../components/RagPipelineDiagram.astro';
+import EvidenceHighlights from '../components/EvidenceHighlights.astro';
 import { projects, site } from '../data/site';
 import { absoluteUrl } from '../utils/paths';
 
@@ -56,6 +57,19 @@ const schema = {
                         <span class="status-tag">{project.role}</span>
                         <span>{project.stack}</span>
                     </div>
+
+                    {project.evidence && <EvidenceHighlights items={project.evidence} />}
+
+                    {project.evaluation && (
+                        <section id={`${project.slug}-evaluation`} aria-label={`${project.title} evaluation findings`}>
+                            <h3>Evaluation findings</h3>
+                            <div class="project-facts">
+                                {project.evaluation.map((finding) => (
+                                    <p><strong>{finding.label}</strong><span>{finding.detail}</span></p>
+                                ))}
+                            </div>
+                        </section>
+                    )}
 
                     <div class="architecture-strip" aria-label={`${project.title} architecture flow`}>
                         {project.flow.map((step) => (

@@ -46,7 +46,7 @@ const nodes = [
         lines: ['buffered in memory, not sent', 'top chunks + role persona'],
     },
     {
-        id: '07', title: 'Faithfulness', y: 942, h: 72, cost: '~400 ms · 0 LLM', gate: true,
+        id: '07', title: 'Faithfulness (overlap)', y: 942, h: 72, cost: '~400 ms · 0 LLM', gate: true,
         lines: ['overlap ≥ 0.3/claim, ≥ 0.5 all', 'runs before anything is sent'],
     },
 ];
@@ -90,8 +90,9 @@ const description =
     'prunes the chunks from every sub-query together. A relevance gate at a 0.5 threshold then decides: pass to ' +
     'generation, retry once with a broadened query that re-enters at search rather than at the rewriter, or return an ' +
     'honest fallback if both attempts fail. The generator buffers its complete answer in memory, and a faithfulness ' +
-    'check runs before anything is sent — a faithful answer streams over SSE, an unfaithful one is discarded and ' +
-    'logged as an escalation event in PostgreSQL.';
+    'check runs before generated output is sent — a passing answer streams over SSE, a failing one is discarded and ' +
+    'logged as an escalation event in PostgreSQL. This is a lexical-overlap heuristic: a regression probe found that ' +
+    'a fabricated claim and a grounded control both scored 1.000, so a passing score does not establish factual support.';
 ---
 
 <figure class="rag-diagram">
@@ -177,8 +178,8 @@ const description =
             <text class="rag-label--gate" x="436" y="770">fail · retried</text>
             <text x="273" y="800">pass</text>
             <text class="rag-label--gate" x="832" y="610" text-anchor="end">broadened query</text>
-            <text x="170" y="1040" text-anchor="end">faithful</text>
-            <text class="rag-label--bad" x="560" y="1040">not faithful</text>
+            <text x="170" y="1040" text-anchor="end">check passes</text>
+            <text class="rag-label--bad" x="560" y="1040">check fails</text>
         </g>
 
         {/* Entry point */}
@@ -271,7 +272,8 @@ const description =
 
     <figcaption>
         Nine nodes, three classifier routes, two verification gates, six terminal outcomes. Generation is buffered —
-        nothing streams until the faithfulness check passes. Amber marks the conditional gates and the single retry
-        loop; the rose terminal is the one path that throws a completed answer away.
+        generated output is released after the lexical-overlap check passes. Amber marks the conditional gates and
+        the single retry loop; the rose terminal discards a completed answer. A passing overlap score does not prove
+        factual support: the evaluation probe gave both a fabricated claim and a grounded control a score of 1.000.
     </figcaption>
 </figure>
