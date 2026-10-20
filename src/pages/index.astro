@@ -1,6 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import EvidenceHighlights from '../components/EvidenceHighlights.astro';
+import CopyEmail from '../components/CopyEmail.astro';
+import CvDownloads from '../components/CvDownloads.astro';
+import SocialLinks from '../components/SocialLinks.astro';
 import { automationEntries, focusAreas, projects, site, systemProfile, workEntries } from '../data/site';
 import { absoluteUrl, withBase } from '../utils/paths';
 
@@ -44,7 +47,7 @@ const profileSchema = {
 
 <BaseLayout title={site.title} description={site.description} currentPath="/" schema={[profileSchema]}>
     <div class="page-stack">
-        <section class="home-intro hero-system" data-reveal>
+        <section class="home-intro hero-system">
             <div class="home-intro__copy">
                 <p class="home-role">
                     <span class="system-status-pip" aria-hidden="true"></span>
@@ -52,15 +55,27 @@ const profileSchema = {
                 </p>
                 <h1 class="home-title">{site.name}</h1>
                 <p class="page-copy page-copy--lead">{site.intro}</p>
-                <p class="page-copy page-copy--impact"><strong>Agent graphs</strong> that pick their own next step. <strong>Retrieval</strong> scoped to who is asking. <strong>Evaluation</strong> that tests retrieval quality and exposes verification blind spots. <strong>Backends that resume</strong> instead of restarting.</p>
-
-                <div class="inline-links">
-                    <a class="button-primary" href={withBase('/projects')} data-astro-prefetch>View Projects</a>
-                    <a href={withBase(site.cv.href)} download={site.cv.filename}>{site.cv.label}</a>
-                    <a href={withBase('/lab')} data-astro-prefetch>Automation Work</a>
-                    <a href={site.github} target="_blank" rel="noreferrer">GitHub</a>
-                    <a href={withBase('/contact')} data-astro-prefetch>Contact</a>
+                <div class="hero-invitation">
+                    <p>{site.opportunity}</p>
+                    <div class="hero-actions">
+                        <a class="contact-cta" href={withBase('/contact')} data-contact-trigger aria-haspopup="dialog">
+                            <span class="contact-cta__copy">Let’s work together<small>Internships & AI projects</small></span>
+                            <span class="contact-cta__arrow" aria-hidden="true">↗</span>
+                        </a>
+                        <a class="work-cta" href={withBase('/projects')} data-astro-prefetch>
+                            Explore my work <span aria-hidden="true">→</span>
+                        </a>
+                    </div>
+                    <SocialLinks />
+                    <div class="hero-email">
+                        <a href={`mailto:${site.email}`}>{site.email}</a>
+                        <CopyEmail email={site.email} />
+                    </div>
                 </div>
+
+                <p class="page-copy page-copy--impact"><strong>Tool-using agents.</strong> Measured retrieval. Identity-aware backends. <strong>Pipelines that resume.</strong></p>
+
+                <CvDownloads />
             </div>
 
         </section>

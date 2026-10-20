@@ -366,6 +366,11 @@ select {
     max-width: 52rem;
 }
 
+.home-intro__copy {
+    width: 100%;
+    container-type: inline-size;
+}
+
 .home-role,
 .section-label,
 .micro-label,
@@ -397,6 +402,117 @@ select {
     font-size: var(--text-sm);
     line-height: 1.7;
 }
+
+.hero-invitation {
+    width: 100%;
+    display: grid;
+    justify-items: center;
+    gap: 0.75rem;
+    margin-block: 0.25rem;
+}
+
+.hero-invitation > p {
+    margin: 0;
+    color: var(--text-soft);
+    font-size: var(--text-base);
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+}
+
+.contact-cta,
+.work-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    min-height: 3.5rem;
+    padding: 0.8rem 1.25rem;
+    border: 1px solid var(--border-strong);
+    border-radius: 0.4rem;
+    color: var(--text-main);
+    background: var(--bg-panel);
+    font-size: var(--text-base);
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 180ms ease, background 180ms ease, border-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+}
+
+.contact-cta {
+    background: var(--cyan-main);
+    border-color: var(--cyan-main);
+    color: var(--bg-main);
+    font-weight: 700;
+    box-shadow: 0 3px 0 #0d7490;
+    animation: contact-beacon 2.4s ease-in-out 700ms 3;
+    min-height: 4.5rem;
+    font-size: var(--text-lg);
+    position: relative;
+}
+
+.contact-cta__copy { text-align: left; }
+.contact-cta__copy small { display: block; font-size: var(--text-xs); font-weight: 500; margin-top: 0.25rem; }
+.contact-cta__arrow { display: grid; place-items: center; width: 2rem; height: 2rem; border: 1px solid rgba(4, 7, 12, 0.3); border-radius: 50%; }
+
+.contact-cta:hover,
+.contact-cta:focus-visible {
+    animation: none;
+    background: var(--cyan-bright);
+    border-color: var(--cyan-bright);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 0 #0d7490, 0 10px 28px rgba(34, 211, 238, 0.16);
+}
+
+.work-cta:hover,
+.work-cta:focus-visible {
+    color: var(--cyan-bright);
+    background: var(--cyan-dim);
+    border-color: var(--cyan-main);
+}
+
+.contact-cta__arrow, .work-cta span { transition: transform 180ms ease; }
+.contact-cta:hover .contact-cta__arrow, .contact-cta:focus-visible .contact-cta__arrow { transform: translate(3px, -3px); }
+.work-cta:hover span, .work-cta:focus-visible span { transform: translateX(3px); }
+.contact-cta:active { transform: translateY(2px); box-shadow: 0 1px 0 #0d7490; }
+
+.hero-email {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0 0.75rem;
+    color: var(--text-muted);
+    font-size: var(--text-sm);
+}
+
+.hero-email > a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
+    overflow-wrap: anywhere;
+}
+
+.hero-email > a:hover { color: var(--cyan-bright); }
+
+@keyframes contact-beacon {
+    0%, 100% { box-shadow: 0 3px 0 #0d7490, 0 0 0 0 rgba(34,211,238,0); }
+    35% { box-shadow: 0 3px 0 #0d7490, 0 0 0 7px rgba(34,211,238,0.16); }
+}
+
+html.contact-panel-open { overflow: hidden; }
+html.has-contact-nudge .site-main { padding-bottom: 12rem; }
+.route-nav a[data-contact-trigger]:not([aria-current="page"]) { color: var(--cyan-bright); border-color: var(--cyan-soft); background: var(--cyan-dim); }
+.security-evidence-link { display: inline-flex; gap: 0.6rem; align-items: center; min-height: 2.75rem; color: var(--cyan-bright); font-size: var(--text-sm); text-underline-offset: 0.3em; }
+.security-evidence-link:hover { text-decoration: underline; }
+.security-proof { border-left: 2px solid var(--cyan-main); padding: 0.25rem 0 0.25rem 1.25rem; scroll-margin-top: 12rem; }
+.security-proof h3 { margin: 0 0 0.75rem; font-size: var(--text-xl); color: var(--cyan-bright); }
+.security-proof > p { color: var(--text-soft); line-height: 1.7; max-width: 65ch; }
 
 .system-status-pip,
 .focus-card__node {
@@ -444,9 +560,10 @@ select {
 
 .home-title {
     color: var(--text-main) !important;
-    font-size: var(--text-hero);
+    font-size: min(6rem, 10.8cqi);
     line-height: 0.92;
     letter-spacing: -0.065em;
+    white-space: nowrap;
 }
 
 .page-title {
@@ -1856,9 +1973,14 @@ select {
         padding-block: 2rem 4rem;
     }
 
-    .home-title {
-        font-size: clamp(3rem, 16vw, 4.7rem);
+    .hero-actions {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        width: 100%;
+        max-width: 23rem;
     }
+
+    .hero-actions .work-cta { min-height: 3rem; }
 
     .page-title {
         font-size: clamp(2.2rem, 13vw, 3.3rem);

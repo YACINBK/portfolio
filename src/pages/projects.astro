@@ -60,6 +60,18 @@ const schema = {
 
                     {project.evidence && <EvidenceHighlights items={project.evidence} />}
 
+                    {project.slug === 'knowledge-assistant' && (
+                        <section id="knowledge-assistant-security" class="security-proof" aria-labelledby="rag-security-title">
+                            <h3 id="rag-security-title">Access control inside retrieval</h3>
+                            <p>Role and admin-only filters run inside the retrieval query. Restricted passages are excluded before they can enter the model’s context.</p>
+                            <div class="project-facts">
+                                <p><strong>Identity & sessions</strong><span>Keycloak OpenID Connect authenticates the session; CSRF protection guards state-changing requests.</span></p>
+                                <p><strong>Authorization audit</strong><span>Zero violations across 280 audited retrievals. Restricted compensation content was withheld from non-admin accounts and remained answerable for admins.</span></p>
+                                <p><strong>Local inference</strong><span>LiteLLM and Ollama keep proprietary document inference on the local network.</span></p>
+                            </div>
+                        </section>
+                    )}
+
                     {project.evaluation && (
                         <section id={`${project.slug}-evaluation`} aria-label={`${project.title} evaluation findings`}>
                             <h3>Evaluation findings</h3>

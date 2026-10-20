@@ -2,6 +2,8 @@
 import { ClientRouter } from 'astro:transitions';
 import GlobalHeader from '../components/GlobalHeader.astro';
 import BackgroundAura from '../components/BackgroundAura.astro';
+import ContactPanel from '../components/ContactPanel.astro';
+import ContactNudge from '../components/ContactNudge.astro';
 import { site } from '../data/site';
 import { absoluteUrl, withBase } from '../utils/paths';
 import '../styles/global.css';
@@ -63,6 +65,9 @@ const ogImage = new URL(withBase('/logo.png'), Astro.site).toString();
                 <slot />
             </main>
         </div>
+
+        <ContactPanel />
+        <ContactNudge />
 
         <script>
             const initPortfolioSystem = () => {

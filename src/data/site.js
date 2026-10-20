@@ -1,8 +1,8 @@
 export const site = {
-    name: 'Yacin Ben Kacem',
+    name: 'Yassine Ben Kacem',
     shortName: 'YBK',
     role: 'Final-Year Software Engineering Student — Secure Agentic AI & RAG',
-    title: 'Yacin Ben Kacem | Backend & Agentic Systems Architecture',
+    title: 'Yassine Ben Kacem | Secure Agentic AI & RAG',
     description:
         'Final-year ENISO software engineering student building secure agentic AI and RAG systems, with retrieval evaluation, access-control audits, and recoverable automation.',
     location: 'Sousse, Tunisia',
@@ -12,19 +12,15 @@ export const site = {
     academicEmail: 'yassine.benkacem@eniso.u-sousse.tn',
     phone: '+216 29 504 806',
     github: 'https://github.com/YACINBK',
-    linkedin: 'https://www.linkedin.com/in/yacin-ben-kacem/',
-    brandLine: 'agentic systems / unattended automation / secure backends',
-    // Lives in public/, so the path is served verbatim. `updated` is shown next to
-    // the download so a reader knows how current the PDF is without opening it.
-    cv: {
-        href: '/Yacin_Ben_Kacem_CV.pdf',
-        filename: 'Yacin_Ben_Kacem_CV.pdf',
-        label: 'Download CV',
-        updated: 'October 2026',
-        pages: 'PDF · 2 pages',
-    },
+    linkedin: 'https://www.linkedin.com/in/yassine-ben-kacem',
+    brandLine: 'Agentic AI · RAG & automation · Secure backends',
+    cvs: [
+        { language: 'en', short: 'EN', label: 'English', href: '/Yassine_Ben_Kacem_CV_EN.pdf', filename: 'Yassine_Ben_Kacem_CV_EN.pdf' },
+        { language: 'fr', short: 'FR', label: 'Français', href: '/Yassine_Ben_Kacem_CV_FR.pdf', filename: 'Yassine_Ben_Kacem_CV_FR.pdf' },
+    ],
+    opportunity: 'Open to internships and projects in agentic AI, RAG, and intelligent automation.',
     intro:
-        'I build the unglamorous half of AI systems: the part that has to be right.',
+        'I build secure AI agents, retrieval systems, and automation that recovers.',
     homeSummary:
         'Systems architect specialized in secure backend boundaries, agentic AI orchestration, and failure-aware automation workflows.',
     currentFocusTitle: 'Live System Trace',
@@ -55,9 +51,9 @@ export const focusAreas = [
             'Labeled evaluation sets, near-miss questions, and threshold sweeps to measure what retrieval accepts, misses, and can safely prune.',
     },
     {
-        title: 'Access-Aware AI',
+        title: 'RBAC & AI Security',
         description:
-            'Role and admin scope enforced inside retrieval queries, backed by Keycloak identity and audits of who can retrieve what.',
+            'Role and admin permissions enforced inside retrieval queries, with Keycloak OIDC sessions, CSRF protection, and reproducible access-control audits.',
     },
     {
         title: 'Recoverable Agents',
@@ -528,7 +524,7 @@ export const contactLinks = [
     { label: 'Email', href: `mailto:${site.email}`, value: site.email, type: 'copy', microcopy: 'route ready' },
     { label: 'Academic email', href: `mailto:${site.academicEmail}`, value: site.academicEmail, type: 'copy', microcopy: 'campus route' },
     { label: 'GitHub', href: site.github, value: 'github.com/YACINBK', type: 'external', microcopy: 'repository channel' },
-    { label: 'LinkedIn', href: site.linkedin, value: 'linkedin.com/in/yacin-ben-kacem', type: 'external', microcopy: 'professional channel' },
+    { label: 'LinkedIn', href: site.linkedin, value: site.linkedin.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, ''), type: 'external', microcopy: 'professional channel' },
 ];
 
 export const socialLinks = contactLinks.filter((link) => ['GitHub', 'LinkedIn'].includes(link.label));

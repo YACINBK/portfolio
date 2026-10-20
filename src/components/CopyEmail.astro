@@ -1,0 +1,71 @@
+---
+interface Props {
+    email: string;
+}
+const { email } = Astro.props;
+---
+
+<copy-email class="copy-email" data-email={email}>
+    <button type="button" hidden>Copy email</button>
+    <span role="status" aria-live="polite"></span>
+</copy-email>
+
+<style>
+    .copy-email {
+        display: inline-flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.25rem 0.75rem;
+        font-size: var(--text-sm);
+    }
+
+    button {
+        min-height: 2.75rem;
+        padding: 0.5rem 0.8rem;
+        border: 1px solid var(--border-medium);
+        border-radius: 0.35rem;
+        background: transparent;
+        color: var(--text-soft);
+        font: inherit;
+        cursor: pointer;
+        transition: color 180ms ease, border-color 180ms ease, background 180ms ease;
+    }
+
+    button:hover {
+        color: var(--cyan-bright);
+        border-color: var(--cyan-soft);
+        background: var(--cyan-dim);
+    }
+
+    span { color: var(--text-soft); }
+</style>
+
+<script>
+    // Astro swaps the page DOM without rerunning this module. Bind the new
+    // buttons after each swap; WeakSet prevents duplicate listeners on reuse.
+    const boundButtons = new WeakSet<HTMLButtonElement>();
+
+    function bindCopyButtons() {
+        document.querySelectorAll<HTMLElement>('copy-email').forEach(element => {
+            const button = element.querySelector('button');
+            const status = element.querySelector('[role="status"]');
+            if (!button || !status || boundButtons.has(button)) return;
+            boundButtons.add(button);
+            button.hidden = false;
+            button.addEventListener('click', async () => {
+                const email = element.dataset.email;
+                if (!email) return;
+                status.textContent = '';
+                try {
+                    await navigator.clipboard.writeText(email);
+                    status.textContent = 'Email copied.';
+                } catch {
+                    status.textContent = 'Select the email address and copy it manually.';
+                }
+            });
+        });
+    }
+
+    bindCopyButtons();
+    document.addEventListener('astro:page-load', bindCopyButtons);
+</script>

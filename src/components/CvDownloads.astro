@@ -1,0 +1,65 @@
+---
+import { site } from '../data/site';
+import { withBase } from '../utils/paths';
+const { compact = false } = Astro.props;
+---
+
+<div class:list={['cv-downloads', { 'cv-downloads--compact': compact }]} role="group" aria-label="Download CV as PDF">
+    {compact ? <span class="cv-downloads__label">CV</span> : (
+        <div class="cv-downloads__intro">
+            <strong>Download my CV</strong>
+            <span>Experience, projects & skills · PDF</span>
+        </div>
+    )}
+    {site.cvs.map(cv => (
+        <a href={withBase(cv.href)} download={cv.filename} hreflang={cv.language}
+            aria-label={`Download ${cv.label} CV (PDF)`}>
+            {compact ? <span lang={cv.language}>{cv.short}</span> : (
+                <>
+                    <svg class="cv-document" viewBox="0 0 24 24" width="25" height="25" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                        <path d="M6 2h8l4 4v16H6z M14 2v5h4 M9 11h6 M9 15h6 M9 18h4" />
+                    </svg>
+                    <span class="cv-language"><strong lang={cv.language}>{cv.label}</strong><small>Download PDF</small></span>
+                    <span class="cv-download-arrow" aria-hidden="true">↓</span>
+                </>
+            )}
+        </a>
+    ))}
+</div>
+
+<style>
+    .cv-downloads { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); width: min(100%, 34rem); gap: 0.75rem; }
+    .cv-downloads:not(.cv-downloads--compact) { container-type: inline-size; }
+    .cv-downloads__intro { grid-column: 1 / -1; display: grid; gap: 0.3rem; text-align: left; }
+    .cv-downloads__intro strong { color: var(--amber-signal); font-size: var(--text-lg); }
+    .cv-downloads__intro > span { color: var(--text-soft); font-size: var(--text-xs); }
+    .cv-downloads__label { color: var(--amber-signal); font-size: var(--text-sm); margin-right: 0.25rem; }
+    a {
+        display: flex; align-items: center; gap: 0.75rem; min-width: 0;
+        min-height: 4.5rem; padding: 0.85rem 1rem;
+        color: var(--text-main); background: var(--amber-dim); border: 1px solid rgba(245,158,11,0.55); border-radius: 0.5rem;
+        text-decoration: none; text-align: left;
+        transition: background 180ms ease, border-color 180ms ease, color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+    }
+    .cv-document { color: var(--amber-signal); flex-shrink: 0; }
+    .cv-language { display: grid; gap: 0.3rem; }
+    .cv-language strong { font-size: var(--text-lg); font-weight: 700; }
+    .cv-language small { color: var(--text-soft); font-size: var(--text-xs); }
+    .cv-download-arrow { margin-left: auto; font-size: var(--text-xl); color: var(--amber-signal); transition: transform 180ms ease; }
+    a:hover, a:focus-visible { background: var(--amber-signal); border-color: var(--amber-signal); color: var(--bg-main); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(245,158,11,0.14); }
+    a:hover .cv-document, a:hover .cv-language small, a:hover .cv-download-arrow,
+    a:focus-visible .cv-document, a:focus-visible .cv-language small, a:focus-visible .cv-download-arrow { color: inherit; }
+    a:hover .cv-download-arrow, a:focus-visible .cv-download-arrow { transform: translateY(3px); }
+    a:active { transform: translateY(0); box-shadow: none; }
+    .cv-downloads--compact { display: flex; width: auto; flex-wrap: nowrap; align-items: center; gap: 0.2rem; }
+    .cv-downloads--compact a { justify-content: center; min-width: 2.75rem; min-height: 2.75rem; padding: 0.5rem; font-size: var(--text-sm); }
+    @media (max-width: 400px) {
+        .cv-downloads { gap: 0.6rem; }
+        a { padding: 0.75rem 0.6rem; gap: 0.5rem; }
+        .cv-language strong { font-size: var(--text-base); }
+        .cv-document { width: 20px; }
+        .cv-download-arrow { font-size: var(--text-lg); }
+    }
+    @media (max-width: 560px) { .cv-downloads--compact .cv-downloads__label { display: none; } }
+    @container (max-width: 300px) { .cv-document { display: none; } }
+</style>

@@ -1,0 +1,103 @@
+---
+import { site } from '../data/site';
+import { withBase } from '../utils/paths';
+---
+
+<aside class="contact-nudge" aria-label="Explore and connect" hidden>
+    <button type="button" class="nudge-dismiss" aria-label="Dismiss contact prompts">×</button>
+    <span class="nudge-eyebrow">Beyond the overview</span>
+    <div class="nudge-message">
+        <a href={site.github} target="_blank" rel="noreferrer"><strong>See what I’m building.</strong><span>Explore my GitHub repositories <b aria-hidden="true">↗</b></span></a>
+    </div>
+    <div class="nudge-message" hidden>
+        <a href={withBase('/contact')} data-contact-trigger aria-haspopup="dialog"><strong>Have an opportunity in mind?</strong><span>Let’s talk internships or projects <b aria-hidden="true">↗</b></span></a>
+    </div>
+    <div class="nudge-message" hidden>
+        <a href={site.linkedin} target="_blank" rel="noreferrer"><strong>Let’s stay connected.</strong><span>Find me on LinkedIn <b aria-hidden="true">↗</b></span></a>
+    </div>
+    <div class="nudge-progress" aria-hidden="true"><i class="is-current"></i><i></i><i></i></div>
+</aside>
+
+<style>
+    .contact-nudge {
+        position: fixed; right: 1.25rem; bottom: 1.25rem; z-index: 80;
+        width: min(23rem, calc(100% - 2rem)); padding: 1rem 3.5rem 0.8rem 1.15rem;
+        color: var(--bg-main); background: #e5faff;
+        border: 1px solid var(--cyan-bright); border-left: 4px solid var(--cyan-main);
+        border-radius: 0.65rem; box-shadow: 0 10px 40px rgba(0,0,0,0.35);
+        animation: nudge-in 250ms ease-out;
+    }
+    .contact-nudge[hidden], .nudge-message[hidden] { display: none; }
+    :global(html.contact-panel-open) .contact-nudge { visibility: hidden; }
+    .nudge-eyebrow { display: block; color: #335566; font-size: var(--text-xs); margin-bottom: 0.35rem; }
+    .nudge-dismiss { position: absolute; right: 0.25rem; top: 0.25rem; width: 2.75rem; height: 2.75rem; border: none; border-radius: 50%; background: transparent; color: #335566; font-size: var(--text-xl); cursor: pointer; }
+    .nudge-dismiss:hover { background: rgba(4,7,12,0.1); color: var(--bg-main); }
+    a { display: grid; gap: 0.4rem; min-height: 3rem; color: inherit; text-decoration: none; }
+    a strong { font-size: var(--text-base); line-height: 1.4; }
+    a span { font-size: var(--text-xs); line-height: 1.5; }
+    a:hover span, a:focus-visible span { text-decoration: underline; text-underline-offset: 0.2em; }
+    a b { display: inline-block; margin-left: 0.5rem; transition: transform 180ms ease; }
+    a:hover b { transform: translate(2px,-2px); }
+    a:focus-visible, button:focus-visible { outline-color: #075985; }
+    .nudge-progress { display: flex; gap: 0.3rem; margin-top: 0.65rem; }
+    .nudge-progress i { height: 3px; width: 1.1rem; border-radius: 2px; background: #b0ccd5; }
+    .nudge-progress .is-current { background: #0e7490; }
+    @keyframes nudge-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+    @media (max-width: 560px) { .contact-nudge { right: 1rem; bottom: 0.75rem; } }
+</style>
+
+<script>
+    let cleanup = () => {};
+    let dismissed = false;
+    const dismissalKey = 'portfolio-contact-prompts-dismissed';
+    try { dismissed = sessionStorage.getItem(dismissalKey) === 'true'; } catch { /* In-memory dismissal still works. */ }
+
+    function initNudge() {
+        cleanup();
+        const nudge = document.querySelector<HTMLElement>('.contact-nudge');
+        if (!nudge) return;
+        nudge.hidden = true;
+        if (dismissed) return;
+        const controller = new AbortController();
+        const messages = Array.from(nudge.querySelectorAll<HTMLElement>('.nudge-message'));
+        const dots = Array.from(nudge.querySelectorAll('.nudge-progress i'));
+        messages.forEach((message, i) => { message.hidden = i !== 0; });
+        dots.forEach((dot, i) => dot.classList.toggle('is-current', i === 0));
+        let index = 0;
+        let ready = false;
+        let cycle: number | undefined;
+        const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        const advance = () => {
+            if (nudge.hidden || document.hidden || motion.matches || nudge.matches(':hover, :focus-within') || document.querySelector('dialog[open]')) return;
+            messages[index].hidden = true;
+            dots[index].classList.remove('is-current');
+            index = (index + 1) % messages.length;
+            messages[index].hidden = false;
+            dots[index].classList.add('is-current');
+        };
+        const show = () => {
+            if (ready && !dismissed && !document.hidden) {
+                nudge.hidden = false;
+                document.documentElement.classList.add('has-contact-nudge');
+                if (cycle === undefined) cycle = window.setInterval(advance, 9000);
+            }
+        };
+        const delay = window.setTimeout(() => { ready = true; show(); }, 6000);
+        document.addEventListener('visibilitychange', show, { signal: controller.signal });
+        nudge.querySelector('button')?.addEventListener('click', () => {
+            dismissed = true;
+            try { sessionStorage.setItem(dismissalKey, 'true'); } catch { /* Keep the in-memory preference. */ }
+            nudge.hidden = true;
+            cleanup();
+        }, { signal: controller.signal });
+        cleanup = () => {
+            window.clearTimeout(delay); window.clearInterval(cycle);
+            controller.abort();
+            document.documentElement.classList.remove('has-contact-nudge');
+        };
+    }
+
+    document.addEventListener('astro:before-swap', () => cleanup());
+    document.addEventListener('astro:page-load', initNudge);
+    initNudge();
+</script>
